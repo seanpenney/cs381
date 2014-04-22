@@ -58,22 +58,13 @@ halfadder = Circuit (Gate 1 Xor (Gate 2 And GatesEmpty)) (Link 1 1 2 1 (Link 1 2
 ppCircuit :: Circuit -> String
 ppCircuit (Circuit g l) = ppGates g ++ ppLinks l
 
-ppGates :: Gates -> IO()
-ppGates GatesEmpty = putStr ""
-ppGates (Gate n fn g) = do
-						show n
-						putStr ":"
-						show fn
-						putStr ";\n"
-						--ppGates g
---ppGates (Gate n fn g) = do { putStrLn (show n ++ ":" ++ show fn ++ ";") ;  ppGates g }
---ppGates (Gate n fn g) = do {show n ; putStr ":" ; show fn ; putStrLn ";" } ++ ppGates g
-
-
+ppGates :: Gates -> String
+ppGates GatesEmpty = ""
+ppGates (Gate n fn g) = show n ++ ":" ++ show fn ++ ";\n" ++ ppGates g
 
 ppLinks :: Links -> String
 ppLinks LinksEmpty = ""
-ppLinks (Link a b c d l) = "from " ++ show a ++ "." ++ show b ++ " to " ++ show c ++ "." ++ show d ++ ppLinks l
+ppLinks (Link a b c d l) = "from " ++ show a ++ "." ++ show b ++ " to " ++ show c ++ "." ++ show d ++ "\n" ++ ppLinks l
 
 		
 -- Exercise 3, Designing Abstract Syntax
