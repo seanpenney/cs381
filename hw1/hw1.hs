@@ -30,7 +30,7 @@ type Name = String
 type Num = Int
 
 --b)
-vector = Def "vector" ["x1", "y1", "x2", "y2"] (Seq [Pen Down, Moveto (Bar "x1", Bar "y1"), Moveto (Bar "x2", Bar "y2"), Pen Up])
+vector = Def "vector" ["x1", "y1", "x2", "y2"] (Seq [Pen Up, Moveto (Bar "x1", Bar "y1"), Pen Down, Moveto (Bar "x2", Bar "y2"), Pen Up])
 
 --c)
 steps :: Int -> Cmd
