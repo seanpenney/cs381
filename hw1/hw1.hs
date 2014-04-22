@@ -1,5 +1,5 @@
 -- CS 381, Homework 1
--- Sean Penney, Paul Atkinson, Kelson
+-- Sean Penney, Paul Atkinson, Kelson Luc
 
 --module hw1 where
 
@@ -9,15 +9,17 @@ import Prelude hiding (Num)
 
 --a)
 data Cmd = Pen Mode
-		| Moveto Pos Pos
+		| Moveto (Pos, Pos)
 		| Def Name Pars Cmd
 		| Call Name Vals
 		| Seq [Cmd]
+		deriving (Show)
 		
 		
 data Mode = Up | Down
+	deriving (Show)
 
-data Pos = Foo Num | Bar Name
+data Pos = Foo Num | Bar Name deriving (Show)
 
 type Pars = [Name]
 
@@ -28,10 +30,10 @@ type Name = String
 type Num = Int
 
 --b)
-vector = Def "vector" ["x1", "y1", "x2", "y2"] (Seq [Pen Up, Moveto (Bar "x1") (Bar "y1"), Pen Down, Moveto (Bar "x2") (Bar "y2")])
+vector = Def "vector" ["x1", "y1", "x2", "y2"] (Seq [Pen Down, Moveto (Bar "x1", Bar "y1"), Moveto (Bar "x2", Bar "y2"), Pen Up])
 
 --c)
-steps :: Int ->Cmd
+steps :: Int -> Cmd
 steps n | n < 1 = Seq []
 		| n == 1 = Seq [Call "vector" [0, 0, 0, 1], Call "vector" [0, 1, 1, 1]] -- move from (0,0) to (1,1)
 		| n > 1 = Seq [steps (n-1), Seq[Call "vector" [n-1, n-1, n-1, n], Call "vector" [n-1, n, n, n]]]
