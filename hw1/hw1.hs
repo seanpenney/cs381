@@ -55,6 +55,8 @@ data Links = Link Int Int Int Int Links | LinksEmpty
 halfadder = Circuit (Gate 1 Xor (Gate 2 And GatesEmpty)) (Link 1 1 2 1 (Link 1 2 2 2 LinksEmpty))
 
 --c)
+--NOTE: In order to properly display format for question, a call to any pretty printer must be wrapped
+--inside putStr, ie. putStr(ppCircuit halfadder)
 ppCircuit :: Circuit -> String
 ppCircuit (Circuit g l) = ppGates g ++ ppLinks l
 
@@ -64,9 +66,8 @@ ppGates (Gate n fn g) = show n ++ ":" ++ show fn ++ ";\n" ++ ppGates g
 
 ppLinks :: Links -> String
 ppLinks LinksEmpty = ""
-ppLinks (Link a b c d l) = "from " ++ show a ++ "." ++ show b ++ " to " ++ show c ++ "." ++ show d ++ "\n" ++ ppLinks l
-
-		
+ppLinks (Link a b c d l) = "from " ++ show a ++ "." ++ show b ++ " to " ++ show c ++ "." ++ show d ++ ";\n" ++ ppLinks l
+	
 -- Exercise 3, Designing Abstract Syntax
 
 data Expr = N Int
