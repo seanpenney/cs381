@@ -1,0 +1,25 @@
+Question 1 (Arithmetic operations):
+	sem Zero = 0
+	sem (Succ e) = 1 + sem e
+	sem (Sum es) = foldr (+) 0 (map sem es)
+	sem (IfZero c e e') | sem c==0 = sem e 
+				 | otherwise = sem e'
+	
+	sem (Sum []) = 0
+	sem (Sum (e:es)) = sem e + sem (Sum es)
+	
+	
+Question 2 (Time):
+	noon = 720
+	
+	sem Midnight = 0
+	sem Noon = noon
+	sem (PM 12) = noon
+	sem (PM h) = noon + h*60
+	sem (Before m t) = sem t - m
+	
+Question 3 (Move)
+	sem (JumpTo p) _ = p
+	sem (UpByi) (x, y) = (x, y+ i)
+	sem Right (x, y) = (x+1, y)
+	sem (Seq m m') p = sem m' (sem m p)
