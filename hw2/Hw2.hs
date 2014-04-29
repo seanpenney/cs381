@@ -68,6 +68,10 @@ type Line = (Int,Int,Int,Int)
 type Lines = [Line]
 
 semS :: Cmd3 -> State -> (State, Lines)
-semS (Pen m) (mode, x, y)  = ((m, x, y), []) 
+semS (Pen m) (mode, x, y)  = ((m, x, y), [])
+semS (MoveTo x y) (mode, x2, y2) = ((mode, x, y), [(x2, y2, x, y)])
 
---sem' :: Cmd3 -> Lines
+sem' :: Cmd3 -> Lines
+sem' command = snd (semS command (Up, 0, 0))
+
+test4 = MoveTo 1 2
