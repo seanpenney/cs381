@@ -5,7 +5,7 @@ module Hw2 where
 
 -- Exercise 1, A Stack Language
 
-{--
+
 type Prog = [Cmd]
 
 data Cmd = LD Int
@@ -35,15 +35,15 @@ eval p = sem p ([])
 test1 = [LD 3, ADD] -- does not evalutate
 test2 = [LD 3,DUP,ADD,DUP,MULT] -- gives [36]
 test3 = [] -- gives empty list
---}
+
 
 -- Exercise 2, Extending the Stack Language by Macros
 
 --a)
-data Cmd2 = LD Int
-			| ADD
-			| MULT
-			| DUP
+data Cmd2 = LD2 Int
+			| ADD2
+			| MULT2
+			| DUP2
 			| DEF String [Cmd2]
 			| CALL String
 			deriving (Show)
