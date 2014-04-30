@@ -77,7 +77,7 @@ semCmd2 (CALL command) (mac, stack) | command == "ADD2" = (mac, (snd (semCmd2 AD
 eval2 :: Prog2 -> State
 eval2 p = sem2 p ([], [])
 
-test20 = [LD2 3,DUP2,ADD2,DUP2,MULT2] -- gives [36]
+macrotest1 = [DEF "test" [LD2 2, DUP2]]
 
 
 -- Exercise 3, Mini Logo
