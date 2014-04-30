@@ -51,6 +51,19 @@ data Cmd2 = LD2 Int
 --b)
 type Prog2 = [Cmd2]
 type Macros = [(String,Prog2)]
+type State = (Macros, Stack)
+
+data Prom = P Prog2
+			| M Macros
+			deriving Show
+
+type S = State -> State
+
+
+sem2 :: Prog2 -> S
+sem2 [] a = a
+sem2 (x:xs) a = sem2 xs (semCmd2 x a)
+
 
 -- Exercise 3, Mini Logo
 
