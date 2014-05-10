@@ -65,4 +65,61 @@ semStatTC p | typeSafe p = Just (sem p ([]))
 --The type could be simplified by changing it from Prog -> Maybe Stack to just Prog -> Stack
 --The type checker handles errors, so we do not need error handling in sem.
 
-test1 = [LD 4, DUP, ADD, LD 1]
+test1 = [LD 4, DUP, LD 1]
+
+-- Exercise 2, Shape Language
+
+--a)
+data Shape = X
+			| TD Shape Shape
+			| LR Shape Shape
+			deriving Show
+
+type BBox = (Int,Int)
+			
+bbox :: Shape -> BBox
+bbox X = (1,1)
+bbox (TD s1 s2) | s1x >= s2x = (s1x, s1y + s2y)
+				| s1x < s2x = (s2x, s1y + s2y)
+				where		(s1x, s1y) = bbox s1
+						(s2x, s2y) = bbox s2
+bbox (LR s1 s2) | s1y >= s2y = (s1x + s2x, s1y)
+				| s1y < s2y = (s1x + s2x, s2y)
+				where		(s1x, s1y) = bbox s1
+						(s2x, s2y) = bbox s2
+
+--b)
+rect :: Shape -> Maybe BBox
+rect X = Just (1,1)
+rect (TD s1 s2) | Just s1x == Just s2x = Just(s1x, s1y + s2y)
+				| otherwise = Nothing
+				where		Just(s1x, s1y) = (rect s1)
+						Just(s2x, s2y) = (rect s2)
+rect (LR s1 s2) | Just s1y == Just s2y = Just(s1x + s2x, s1y)
+				| otherwise = Nothing
+				where		Just (s1x, s1y) = (rect s1)
+						Just (s2x, s2y) = (rect s2)
+
+test2 = TD X X
+
+-- Exercise 3, Parametric Polymorphism
+
+--a)
+	--1. The return type of f and g are both lists, however, the types of x and y in f are the same and are different for g.
+	--2. Y is contained in a list, so x has to be a list as well.
+	--3. g would be more general, since x and y are not limited to be the same type.
+	--4. They could be the same type, but g has more flexibility in the input types of x and y.
+	
+--b)
+--h :: [b] -> [(a, b)] -> [b]
+--h b _ = b
+
+--c)
+
+--d)
+--The following function, for example works.
+type A = Int
+type B = Int
+h :: A -> B
+
+--However, if the types are changed to lowercase like in the pdf, it would not compile, because types can't be lowercase.
