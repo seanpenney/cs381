@@ -111,15 +111,11 @@ test2 = TD X X
 	--4. They could be the same type, but g has more flexibility in the input types of x and y.
 	
 --b)
---h :: [b] -> [(a, b)] -> [b]
---h b _ = b
-
+h xs ts = xs ++ (map snd ts)
 --c)
+--k a b = (even a) (if even a then a)
 
 --d)
---The following function, for example works.
-type A = Int
-type B = Int
-h :: A -> B
-
---However, if the types are changed to lowercase like in the pdf, it would not compile, because types can't be lowercase.
+-- The type of a -> b is very difficult to define as haskell is strongly typed, variables of a type
+-- can only be interpreted as that type. We could not find a simply way given one type to return 
+-- another general type of b.
