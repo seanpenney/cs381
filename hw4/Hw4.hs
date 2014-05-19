@@ -21,3 +21,8 @@
 
 --a. If it is static, then the answer is 33.
 --b. If it is dynamic, then the answer is 26
+
+--Question 33
+
+--a. y = 54, z = 112
+--b. y = -14, z = -28
