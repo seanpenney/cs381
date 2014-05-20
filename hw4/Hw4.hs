@@ -9,8 +9,8 @@
 --[y:1, x:?]							push
 --[f{}, y:1, x:?]						push
 --[x:2, f{}, y:1, x:?]					push
---[x:0, x:1, x:2, f{}, y:1, x:?]		push
 --[x:1, x:2, f{}, y:1, x:?]				push
+--[x:0, x:1, x:2, f{}, y:1, x:?]		push
 --[x:0, x:1, x:2, f{}, y:1, x:?]		push
 --[x:1, x:2, f{}, y:2, x:?]				pop
 --[x:2, f{}, y:4, x:?]					pop
