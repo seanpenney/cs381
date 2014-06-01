@@ -29,3 +29,10 @@ conflict(C, X) :- when(C, T), when(X, T), where(C, P), where(X, P), C\=X.
 
 /* Part D: S1 = Student 1, S2 = Student 2*/
 meet(S1, S2) :- schedule(S1, P, T), schedule(S2, P, T), S1\=S2; schedule(S1, P, T1), schedule(S2, P, T2), T1\==T2+1, S1\=S2.
+
+/* Exercise 2 */
+/* Part A */
+rdup(L, M) :- rdup2(L, M).
+rdup2([], []).
+rdup2([H|T1], [H|T2]) :- rdup2(T1, T2), not(member(H, T1)).
+rdup2([H|T1], T2) :- rdup2(T1, T2), member(H, T1).
