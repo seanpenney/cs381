@@ -1,4 +1,4 @@
-cs381
+CS 381 (Programming Language Fundamentals)
 =====
 
-cs381 work for sean, paul, kelson
+CS 381 work for Sean, Paul, and Kelson.  Assignments were implemented using Haskell and Prolog.
